@@ -1,0 +1,52 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+	int n, head_x = 0, head_y = 0, heart_x = 0, heart_y = 0, l_arm = 0, r_arm = 0, waist = 0, l_leg = 0, r_leg = 0;
+	cin >> n;
+	bool first = true;
+	vector <vector<char>> arr;
+
+	for (int i = 0; i < n; i++) {
+		char c;
+		vector <char> temp;
+		for (int j = 0; j < n; j++) {
+			cin >> c;
+			temp.push_back(c);
+		}
+		arr.push_back(temp);
+	}
+
+	for (int i = 0; i < n; i++) { // 심장의 위치를 찾는 부분
+		for (int j = 0; j < n; j++) {
+			if (first && arr[i][j] == '*') {
+				head_x = i, head_y = j;
+				heart_x = head_x+1, heart_y = head_y;
+				first = false;
+			}
+		}
+	}
+	for (int i = 0; i < n; i++) { // 팔의 길이를 구하는 부분
+		if (i < heart_y && arr[heart_x][i] == '*') {
+			l_arm++;
+		}
+		else if (i > heart_y && arr[heart_x][i] == '*') {
+			r_arm++;
+		}
+	}
+	for (int i = 0; i < n; i++) { // 허리의 길이를 구하는 부분
+		if (i > heart_x && arr[i][heart_y] == '*') {
+			waist++;
+		}
+	}
+	for (int i = heart_x + 1; i < n; i++) { // 다리의 길이를 구하는 부분
+		if (arr[i][heart_y - 1] == '*') {
+			l_leg++;
+		}
+		if (arr[i][heart_y + 1] == '*') {
+			r_leg++;
+		}
+	}
+	cout << heart_x+1 << ' ' << heart_y+1 << "\n" << l_arm << ' ' << r_arm << ' ' << waist << ' ' << l_leg << ' ' << r_leg;
+}
