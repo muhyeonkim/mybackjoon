@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0;
+	cin >> a >> b >> c >> d >> e >> f;
+	for (int x = -999; x < 1000; x++) {
+		for (int y = -999; y < 1000; y++) {
+			if ((a - d) * x + (b - e) * y == c - f) {
+				if (a * x + b * y == c) {
+					cout << x << ' ' << y;
+				}
+			}
+		}
+	}
+
+}
