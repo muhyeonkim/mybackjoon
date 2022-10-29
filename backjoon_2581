@@ -1,0 +1,28 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	int n, m, prime = 0, min = 10000;
+	cin >> n >> m;
+	for (int i = n; i <= m; i++) {
+		int cnt = 0;
+		for (int j = 2; j < i; j++) {
+			if (i % j == 0) {
+				cnt++;
+			}
+		}
+		if (cnt == 0 && i != 1) {
+			prime += i;
+			if (min > i) {
+				min = i;
+			}
+		}
+	}
+	if (prime == 0) {
+		cout << -1;
+	}
+	else {
+		cout << prime << "\n" << min;
+	}
+}
