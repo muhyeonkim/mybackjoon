@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void prime(vector<int>& arr, int n);
+
+int main() {
+	int t;
+	cin >> t;
+	for (int i = 0; i < t; i++) {
+		int n;
+		vector<int>arr;
+		cin >> n;
+		prime(arr, n);
+		for (int j = n/2; j >=2; j--) {
+			int a = 0, b = 0;
+			if (arr[j] != 0) {
+				a = arr[j];
+			}
+			for (int k = n / 2; k <= n; k++) {
+				if (arr[k] != 0) {
+					b = arr[k];
+				}
+				if (a + b == n) {
+					break;
+				}
+			}
+			if (a + b == n) {
+				cout << a << ' ' << b << "\n";
+				break;
+			}
+		}
+	}
+}
+
+void prime(vector<int>& arr, int n) {
+	for (int i = 0; i <= n; i++) {
+		arr.push_back(i);
+	}
+	for (int i = 2; i <= n; i++) {
+		if (arr[i] == 0) continue;
+		for (int j = 2 * i; j <= n; j += i) {
+			arr[j] = 0;
+		}
+	}
+	arr[1] = 0;
+}
