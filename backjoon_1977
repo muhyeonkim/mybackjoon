@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+	int m, n, sq = 0;
+	vector<int>arr;
+	cin >> m >> n;
+	for (int i = m; i <= n; i++) {
+		for (int j = 0; j <= 100; j++) {
+			if (j * j ==i) {
+				arr.push_back(i);
+			}
+		}
+	}
+	for (int a : arr) {
+		sq += a;
+	}
+	if (sq == 0) {
+		cout << -1;
+	}
+	else {
+		cout << sq << "\n" << arr[0];
+	}
+}
