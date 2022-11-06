@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	int n, cnt = 0;
+	vector<int>arr, temp;
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		int x;
+		cin >> x;
+		arr.push_back(x);
+	}
+	temp = arr;
+	sort(arr.begin(), arr.end());
+	arr.erase(unique(arr.begin(),arr.end()), arr.end());
+	for (int i = 0; i < n; i++) {
+		cout << lower_bound(arr.begin(), arr.end(), temp[i]) - arr.begin() << ' ';
+	}
+}
